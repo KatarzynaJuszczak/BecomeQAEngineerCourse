@@ -1,0 +1,12 @@
+{
+    "USER_ROLE": "QA",
+    "USERNAME": "KJUSZCZAK",
+    "LIST_OF_USERS": [
+        "katarzyna", "username2", "username3"
+    ],
+    "BROWSER": "chrome",
+    "DIRECTORIES": {
+        "BASE_DIRECTORY": "C:\\Projects\\BecomeQAEngineer\\BecomeQAEngineerCourse",
+        "BASE_URL": "https://www.google.com/"
+    }
+}
