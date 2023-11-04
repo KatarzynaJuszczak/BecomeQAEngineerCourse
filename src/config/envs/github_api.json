@@ -1,0 +1,18 @@
+{
+  "URLS": {
+    "GITHUB_API_URL": "https://api.github.com",
+    "SEARCH_USERS_URL": "/search/users",
+    "SEARCH_REPOS_URL": "/search/repositories",
+    "SEARCH_COMMITS_URL": "/search/commits"
+  },
+  "VALID_DATA": {
+    "USER_NAME": "KatarzynaJuszczak",
+    "REPO_NAME": "BecomeQAEngineerCourse",
+    "COMMIT_HASH": "9613c5ac49941bf640e5a9f5750a67e59bd9d463"
+  },
+  "NON_VALID_DATA": {
+    "USER_NAME": "sjkfkjhsakjfsdajfsdjfjksdfjddjfdfjkdf",
+    "REPO_NAME": "sfbsfbhbjfjsfsdsdjfhsfjadfh",
+    "COMMIT_HASH": "lnasdklfnkjanskdjfnkjabsdjhfuyagsuygfuyagsduyfgauysdf"
+  }
+}

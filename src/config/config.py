@@ -9,6 +9,7 @@ class OSConfigProvider:
     @staticmethod
     def get(item_name: str) -> Any:
         """Get the value from the system environment variables by variable name."""
+
         env_value = os.getenv(item_name)
         return env_value
 
@@ -22,24 +23,27 @@ class JSONConfigProvider:
         self.json_object = self._read_config(self.config_path)
 
     def _check_config_path(self):
-        """Internal function which returns the path to the json file depending on the environment type."""
+        """Internal function which returns the path to the json file
+        depending on the environment type."""
+
         module_path = os.path.dirname(os.path.abspath(__file__))
-        if self.env_type == "DEV":
-            config_path = os.path.join(module_path, 'envs\\dev.json')
-        elif self.env_type == "QA":
-            config_path = os.path.join(module_path, 'envs\\qa.json')
+        config_path = os.path.join(module_path, "envs", f"{self.env_type.lower()}.json")
+        if os.path.exists(config_path):
+            return config_path
         else:
             raise AttributeError(f"Wrong env_type {self.env_type} was used.")
-        return config_path
 
     @staticmethod
     def _read_config(config_path):
-        """Internal function which opens json file and deserialize it to a Python object."""
+        """Internal function which opens json file and deserialize it
+        to a Python object."""
+
         with open(config_path) as json_file:
             return json.load(json_file)
 
     def get(self, item_name: str) -> Any:
         """Get the value from the json file by parameter name"""
+
         json_value = self.json_object.get(item_name)
         return json_value
 
@@ -53,16 +57,17 @@ class Config:
 
         # REGISTER PARAMETERS BEFORE USE
         self._register_list(
-            ["USER_ROLE",
-             "USERNAME",
-             "LIST_OF_USERS",
-             "BROWSER",
-             "DIRECTORIES"]
+            [
+                "URLS",
+                "VALID_DATA",
+                "NON_VALID_DATA"
+            ]
         )
 
     def __getattr__(self, item_name: str) -> Any:
         """Magic method to get the value of item_name.
         If item_name doesn't exist it will raise an error."""
+
         if item_name not in self.conf_dict:
             raise AttributeError(f"Please register '{item_name}' var before usage")
         return self.conf_dict[item_name]
@@ -70,6 +75,7 @@ class Config:
     def _register(self, item_name: str) -> None:
         """Internal function which retrieves the value of item_name parameter from the
         config providers and stores it in Config class for later usage."""
+
         for provider in self.config_providers:
             item_value = provider.get(item_name)
             if item_value is not None:
@@ -79,16 +85,6 @@ class Config:
 
     def _register_list(self, item_list: list) -> None:
         """Internal function that calls _register() for parameters list."""
+
         for item in item_list:
             self._register(item)
-
-
-config = Config(config_providers=[OSConfigProvider, JSONConfigProvider(env_type="DEV")])
-
-print(config.USER_ROLE)
-print(config.USERNAME)
-print(config.LIST_OF_USERS)
-print(config.LIST_OF_USERS[0])
-print(config.BROWSER)
-print(config.DIRECTORIES)
-print(config.DIRECTORIES["BASE_DIRECTORY"])

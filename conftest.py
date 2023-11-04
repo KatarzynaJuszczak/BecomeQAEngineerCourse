@@ -2,9 +2,10 @@ import pytest
 from src.applications.github.api.github_api import GitHubAPIClient
 
 
-@pytest.fixture
-def github_api_client():
+@pytest.fixture(scope="session")
+def github_api_app():
     """Returns an instance of the GitHubAPIClient class."""
-    github_api_client = GitHubAPIClient()
-    return github_api_client
 
+    github_api_client = GitHubAPIClient()
+
+    yield github_api_client
