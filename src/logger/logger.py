@@ -66,4 +66,4 @@ class Logger:
         return logger
 
 
-AutomationFrameworkLogger = Logger()
+AFLogger = Logger()

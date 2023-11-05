@@ -42,14 +42,14 @@ class JSONConfigProvider:
             return json.load(json_file)
 
     def get(self, item_name: str) -> Any:
-        """Get the value from the json file by parameter name"""
+        """Get the value from the json file by parameter name."""
 
         json_value = self.json_object.get(item_name)
         return json_value
 
 
 class Config:
-    """Config class is responsible for storing framework's and env's configuration"""
+    """Config class is responsible for storing framework's and env's configuration."""
 
     def __init__(self, config_providers) -> None:
         self.config_providers = config_providers  # STORE THE ORDER OF PROVIDERS
