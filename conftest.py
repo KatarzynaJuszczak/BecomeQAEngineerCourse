@@ -1,6 +1,8 @@
 import pytest
 from src.applications.github.api.github_api import GitHubAPIClient
 from src.applications.github.ui.github_ui import GitHubUILoginPage
+from src.providers.browser_provider import BrowserProvider
+from src.config.config import config
 
 
 @pytest.fixture(scope="session")
@@ -20,8 +22,10 @@ def github_login_page_object():
     Closes browser.
     """
 
-    github_login_page = GitHubUILoginPage()
-    github_login_page.navigate_to_page()
+    driver = BrowserProvider.get_driver(config.BROWSER)
+
+    github_login_page = GitHubUILoginPage(driver)
+    github_login_page.navigate_to_github_login_page()
 
     yield github_login_page
 
