@@ -1,46 +1,45 @@
 import requests
 from src.logger.logger import AFLogger
-from src.config.config import Config, JSONConfigProvider
+from src.applications.github.test_data import test_data
 
-test_api_logger = AFLogger.get_logger("api_tests")
-config = Config(config_providers=[JSONConfigProvider(env_type="github_api")])
+logger = AFLogger.get_logger("github_api")
 
 
 class GitHubAPIClient:
     """Current class contains every API call we use in tests."""
 
-    def __init__(self) -> None:
-        pass
-
     def search_user(self, user_name):
-        search_user_url = config.URLS["GITHUB_API_URL"] + config.URLS["SEARCH_USERS_URL"]
-        test_api_logger.info(f"Sending request to url: {search_user_url}")
+        search_user_url = test_data.GITHUB_API_URL + test_data.SEARCH_USERS_URL
+        logger.info(f"Sending request to url: {search_user_url}")
 
         r = requests.get(f"{search_user_url}", params={'q': user_name})
-        body = r.json()
+        logger.info(f"Response: {r}")
 
-        test_api_logger.info(f"Response retrieved {body}")
+        body = r.json()
+        logger.debug(f"Response retrieved: {body}")
 
         return body
 
     def search_repos(self, repo_name):
-        search_repos_url = config.URLS["GITHUB_API_URL"] + config.URLS["SEARCH_REPOS_URL"]
-        test_api_logger.info(f"Sending request to url: {search_repos_url}")
+        search_repos_url = test_data.GITHUB_API_URL + test_data.SEARCH_REPOS_URL
+        logger.info(f"Sending request to url: {search_repos_url}")
 
         r = requests.get(f"{search_repos_url}", params={'q': repo_name})
-        body = r.json()
+        logger.info(f"Response: {r}")
 
-        test_api_logger.info(f"Response retrieved {body}")
+        body = r.json()
+        logger.debug(f"Response retrieved {body}")
 
         return body
 
     def search_commits(self, commit_hash):
-        search_commits_url = config.URLS["GITHUB_API_URL"] + config.URLS["SEARCH_COMMITS_URL"]
-        test_api_logger.info(f"Sending request to url: {search_commits_url}")
+        search_commits_url = test_data.GITHUB_API_URL + test_data.SEARCH_COMMITS_URL
+        logger.info(f"Sending request to url: {search_commits_url}")
 
         r = requests.get(f"{search_commits_url}", params={'q': commit_hash})
-        body = r.json()
+        logger.info(f"Response: {r}")
 
-        test_api_logger.info(f"Response retrieved {body}")
+        body = r.json()
+        logger.debug(f"Response retrieved {body}")
 
         return body
