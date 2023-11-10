@@ -14,12 +14,20 @@ class Logger:
 
     def __init__(self):
         self.logs_dir_path = self._create_logs_directory()
+        self.log_file_path = self._create_log_file_path()
 
     def _create_logs_directory(self):
-        """Internal function which returns the path to logs directory
-        and create logs directory if it doesn't exist."""
+        """
+        Internal function which returns the path to logs directory
+        and create logs directory if it doesn't exist.
+        """
 
-        logs_dir_path = os.path.join("tests", "logs")
+        dir_path = os.path.abspath(__file__)
+
+        for i in range(3):
+            dir_path = os.path.dirname(dir_path)
+
+        logs_dir_path = os.path.join(dir_path, "tests", "logs")
 
         if not os.path.exists(logs_dir_path):
             os.makedirs(logs_dir_path)
@@ -27,8 +35,10 @@ class Logger:
         return logs_dir_path
 
     def _create_log_file_path(self):
-        """Internal function which returns the path to log file
-        and create logs directory for specific day if it doesn't exist."""
+        """
+        Internal function which returns the path to log file
+        and create logs directory for specific day if it doesn't exist.
+        """
 
         log_dir_path = os.path.join(
             self.logs_dir_path, f"logs_{datetime.now().strftime('%d%m%y')}"
@@ -44,26 +54,30 @@ class Logger:
 
         return log_file_path
 
-    def get_file_handler(self):
-        """Function which returns file handler, set formatter for it
-        and prepares log file to which logs will be sent."""
+    def get_file_handler(self, formatter):
+        """
+        Function which returns file handler, set formatter for it
+        and prepares log file to which logs will be sent.
+        """
 
-        log_file_path = self._create_log_file_path()
-        file_handler = logging.FileHandler(filename=log_file_path, mode="a")
-        file_handler.setFormatter(self.DEFAULT_FORMATTER)
+        file_handler = logging.FileHandler(filename=self.log_file_path, mode="a")
+        file_handler.setFormatter(formatter)
 
         return file_handler
 
-    def get_logger(self, logger_name):
-        """Function which returns logger, set logging level for it
+    def get_logger(self, logger_name, level=DEFAULT_LEVEL, formatter=DEFAULT_FORMATTER):
+        """
+        Function which returns logger, set logging level for it
         and add handler(s). Handlers send the log records created by loggers
-        to the appropriate destination."""
+        to the appropriate destination.
+        """
 
         logger = logging.getLogger(logger_name)
-        logger.setLevel(self.DEFAULT_LEVEL)
-        logger.addHandler(self.get_file_handler())
+        logger.setLevel(level)
+        logger.addHandler(self.get_file_handler(formatter))
 
         return logger
 
 
 AFLogger = Logger()
+
