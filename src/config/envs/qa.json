@@ -2,5 +2,5 @@
     "USER_ROLE": "QA",
     "USERNAME": "KJUSZCZAK",
     "BROWSER": "ff",
-    "BASE_DIRECTORY": "C:\\Projects\\BecomeQAEngineer\\BecomeQAEngineerCourse"
+    "TIMEOUT": 10
 }

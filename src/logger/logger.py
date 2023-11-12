@@ -36,8 +36,8 @@ class Logger:
 
     def _create_log_file_path(self):
         """
-        Internal function which returns the path to log file
-        and create logs directory for specific day if it doesn't exist.
+        Internal function which returns the path to log file and create logs directory
+        for specific day if it doesn't exist.
         """
 
         log_dir_path = os.path.join(
@@ -56,8 +56,8 @@ class Logger:
 
     def get_file_handler(self, formatter):
         """
-        Function which returns file handler, set formatter for it
-        and prepares log file to which logs will be sent.
+        Function which returns file handler, set formatter for it and prepares log file
+        to which logs will be sent.
         """
 
         file_handler = logging.FileHandler(filename=self.log_file_path, mode="a")
@@ -67,9 +67,8 @@ class Logger:
 
     def get_logger(self, logger_name, level=DEFAULT_LEVEL, formatter=DEFAULT_FORMATTER):
         """
-        Function which returns logger, set logging level for it
-        and add handler(s). Handlers send the log records created by loggers
-        to the appropriate destination.
+        Function which returns logger, set logging level for it and add handler(s).
+        Handlers send the log records created by loggers to the appropriate destination.
         """
 
         logger = logging.getLogger(logger_name)
@@ -80,4 +79,3 @@ class Logger:
 
 
 AFLogger = Logger()
-

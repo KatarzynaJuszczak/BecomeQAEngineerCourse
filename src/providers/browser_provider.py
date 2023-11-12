@@ -15,7 +15,8 @@ class BrowserProvider:
             driver = webdriver.Chrome()
         else:
             logger.error(f"Not supported browser {browser_name} was selected.")
-            raise ValueError("Not supported browser was selected.")
+            raise ValueError(f"Not supported browser {browser_name} was selected.")
 
         logger.debug(f"Selected browser: {driver.name}.")
+
         return driver

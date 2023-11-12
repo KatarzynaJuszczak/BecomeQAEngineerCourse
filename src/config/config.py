@@ -16,7 +16,7 @@ class Config:
                 "USER_ROLE",
                 "USERNAME",
                 "BROWSER",
-                "BASE_DIRECTORY"
+                "TIMEOUT"
             ]
         )
 
@@ -50,9 +50,9 @@ class Config:
             self._register(item)
 
 
-config = Config(
-    [
-        OSProvider(),
-        JSONProvider(os.path.join(os.path.dirname(os.path.abspath(__file__)), "envs", "qa.json"))
-    ]
-)
+config_json_file = "qa.json"
+
+config_dir = os.path.dirname(os.path.abspath(__file__))
+config_json_path = os.path.join(config_dir, "envs", config_json_file)
+
+config = Config([OSProvider(), JSONProvider(config_json_path)])

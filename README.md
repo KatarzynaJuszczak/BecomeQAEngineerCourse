@@ -100,6 +100,6 @@ All the command-line flags can be obtained by running `pytest --help`
 
 Frequently used pytest flags:
 
-`pytest -k EXPRESSION` only run tests which match the given substring expression.\
+`pytest -k EXPRESSION` only run tests which match the given substring expression\
 `pytest -v` increase the verbosity level\
 `pytest -x` exit instantly on first error or failed test

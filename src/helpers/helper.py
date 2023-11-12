@@ -3,6 +3,7 @@ import random
 
 
 def create_random_data(length=10, digits=True, letters=True):
+    """Create random data consisting of letters/digits of the given length."""
     characters = ""
     if digits:
         characters += string.digits

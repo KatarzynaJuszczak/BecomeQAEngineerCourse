@@ -3,7 +3,7 @@ from typing import Any
 
 
 class JSONProvider:
-    """JSONProvider class provides json variables."""
+    """JSONProvider class provides JSON variables."""
 
     def __init__(self, json_path) -> None:
         self.json_path = json_path
@@ -11,8 +11,7 @@ class JSONProvider:
 
     def _read_json(self):
         """
-        Internal function which opens json file and deserialize it
-        to a Python object.
+        Internal function which opens JSON file and deserialize it to a Python object.
         """
 
         try:
@@ -20,11 +19,11 @@ class JSONProvider:
                 json_object = json.load(json_file)
                 return json_object
         except FileNotFoundError:
-            raise Exception(f"Json file {self.json_path} not found.")
+            raise Exception(f"JSON file {self.json_path} not found.")
 
     def get(self, item_name: str) -> Any:
         """
-        Get the value from the json file by parameter name.
+        Get the value from the JSON file by parameter name.
         If item doesn't exist returns proper info.
         """
 

@@ -18,13 +18,14 @@ def github_api_app():
 def github_login_page_object():
     """
     Opens Github login page.
-    Returns an instance of the GitHubUILoginPage class
+    Returns an instance of the GitHubUILoginPage class.
     Closes browser.
     """
 
     driver = BrowserProvider.get_driver(config.BROWSER)
+    timeout = config.TIMEOUT
 
-    github_login_page = GitHubUILoginPage(driver)
+    github_login_page = GitHubUILoginPage(driver, timeout)
     github_login_page.navigate_to_github_login_page()
 
     yield github_login_page
