@@ -2,24 +2,34 @@
 ***
 This is module-based test automation framework designed in order to perform tests for github using UI and API approaches.
 
+## **Prerequisites**
+Make sure you have Docker installed on your machine.
+
 ## **Installation**
 
-1. Clone this repository:
+1. Navigate to the project directory:
+    ```bash
+    cd path/to/project
+    ```
 
+2. Clone this repository:
     ```bash
     git clone https://github.com/KatarzynaJuszczak/BecomeQAEngineerCourse.git
     ```
 
-2. Navigate to the project directory:
-
+3. Navigate to the `BecomeQAEngineerCourse` directory:
     ```bash
-    cd <path_to_project>/BecomeQAEngineerCourse
+    cd path/to/project/BecomeQAEngineerCourse
     ```
 
-3. Install dependencies:
-
+4. Build the Docker Image:
     ```bash
-    pip install -r requirements.txt
+    docker build -t your-image-name .
+    ```
+   
+5. Run the Docker Container:
+    ```bash
+    docker run -t your-image-name
     ```
 
 ## **Framework structure**
