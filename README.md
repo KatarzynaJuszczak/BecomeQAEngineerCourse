@@ -22,14 +22,15 @@ Make sure you have Docker installed on your machine.
     cd path/to/project/BecomeQAEngineerCourse
     ```
 
-4. Build the Docker Image:
+4. If you would like to use Docker build the Docker Image:
     ```bash
     docker build -t your-image-name .
     ```
    
-5. Run the Docker Container:
+3. If you don't intend to use Docker install dependencies:
+
     ```bash
-    docker run -t your-image-name
+    pip install -r requirements.txt
     ```
 
 ## **Framework structure**
@@ -113,3 +114,18 @@ Frequently used pytest flags:
 `pytest -k EXPRESSION` only run tests which match the given substring expression\
 `pytest -v` increase the verbosity level\
 `pytest -x` exit instantly on first error or failed test
+
+***
+If you would like to use Docker and have built a Docker Image:
+
+1. Run the Docker Container:
+    ```bash
+    docker run -t your-image-name
+    ```
+   
+2. To copy HTML report after executing tests from Docker Container to project directory Run the Docker Container like shown below:
+   ```bash
+    docker run -v /$PWD/reports/:/app/reports/ your-image-name
+   ```
+
+3. By default, Docker run all tests. You can change what tests will be executed and how using pytest flags.

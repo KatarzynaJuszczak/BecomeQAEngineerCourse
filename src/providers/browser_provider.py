@@ -13,6 +13,14 @@ class BrowserProvider:
             driver = webdriver.Firefox()
         elif browser_name == "chrome":
             driver = webdriver.Chrome()
+        elif browser_name == "ff_remote":
+            options = webdriver.FirefoxOptions()
+            driver = webdriver.Remote(command_executor="http://localhost:4444/wd/hub",
+                                      options=options)
+        elif browser_name == "chrome_remote":
+            options = webdriver.ChromeOptions()
+            driver = webdriver.Remote(command_executor="http://localhost:4444/wd/hub",
+                                      options=options)
         else:
             logger.error(f"Not supported browser {browser_name} was selected.")
             raise ValueError(f"Not supported browser {browser_name} was selected.")

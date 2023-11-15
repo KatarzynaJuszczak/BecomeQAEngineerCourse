@@ -14,4 +14,5 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Run below command when the container launches
-CMD ["pytest", "-k", "test_search_for_existing_repo"]
+ENTRYPOINT ["pytest"]
+CMD ["--html=reports/report.html", "--self-contained-html"]
