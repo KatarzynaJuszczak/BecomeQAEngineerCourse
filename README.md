@@ -3,7 +3,7 @@
 This is module-based test automation framework designed in order to perform tests for github using UI and API approaches.
 
 ## **Prerequisites**
-Make sure you have Docker installed on your machine.
+If you would like to use Docker ensure that Docker Desktop is installed and running on your machine.
 
 ## **Installation**
 
@@ -120,7 +120,7 @@ If you would like to use Docker and have built a Docker Image:
 
 1. Run the Docker Container:
     ```bash
-    docker run -t your-image-name
+    docker run your-image-name
     ```
    
 2. To copy HTML report after executing tests from Docker Container to project directory Run the Docker Container like shown below:
@@ -129,3 +129,17 @@ If you would like to use Docker and have built a Docker Image:
    ```
 
 3. By default, Docker run all tests. You can change what tests will be executed and how using pytest flags.
+
+***
+To run UI tests using Docker you need to:
+
+1. Run below command which reads docker-compose.yaml file and creates and starts the services defined in it.
+    ```bash
+    docker-compose up
+    ```
+   
+2. Open new terminal and run the Docker Container with test(s) you would like to execute.\
+   e.g. run "test_github_login_negative_page_obj" test, generate report and copy report from Docker Container to local directory of the project.
+    ```bash
+    docker run -v /$PWD/reports/:/app/reports/ your-image-name -k test_github_login_negative_page_obj --html=reports/report.html --self-contained-html
+    ```

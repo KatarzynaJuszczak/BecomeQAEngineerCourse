@@ -2,5 +2,6 @@
     "USER_ROLE": "QA",
     "USERNAME": "KJUSZCZAK",
     "BROWSER": "ff",
-    "TIMEOUT": 10
+    "TIMEOUT": 10,
+    "IP_ADDRESS": "localhost"
 }

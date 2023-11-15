@@ -16,7 +16,8 @@ class Config:
                 "USER_ROLE",
                 "USERNAME",
                 "BROWSER",
-                "TIMEOUT"
+                "TIMEOUT",
+                "IP_ADDRESS"
             ]
         )
 

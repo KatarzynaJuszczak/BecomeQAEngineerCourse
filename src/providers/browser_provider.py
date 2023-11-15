@@ -1,5 +1,6 @@
 from selenium import webdriver
 from src.logger.logger import AFLogger
+from src.config.config import config
 
 logger = AFLogger.get_logger("browser_provider")
 
@@ -15,11 +16,11 @@ class BrowserProvider:
             driver = webdriver.Chrome()
         elif browser_name == "ff_remote":
             options = webdriver.FirefoxOptions()
-            driver = webdriver.Remote(command_executor="http://localhost:4444/wd/hub",
+            driver = webdriver.Remote(command_executor=f"http://{config.IP_ADDRESS}:4444/wd/hub",
                                       options=options)
         elif browser_name == "chrome_remote":
             options = webdriver.ChromeOptions()
-            driver = webdriver.Remote(command_executor="http://localhost:4444/wd/hub",
+            driver = webdriver.Remote(command_executor=f"http://{config.IP_ADDRESS}:4444/wd/hub",
                                       options=options)
         else:
             logger.error(f"Not supported browser {browser_name} was selected.")
